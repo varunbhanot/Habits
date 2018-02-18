@@ -14,6 +14,7 @@ import { startup } from './StartupSagas'
 import { getUserAvatar } from './GithubSagas'
 import habitsSaga, { habitsSagas } from './HabitsSagas'
 import  watchSaveProgress  from './HabitTrackerSaga'
+import modalsSaga from "./ModalSagas";
 
 /* ------------- API ------------- */
 
@@ -31,6 +32,8 @@ export default function * root () {
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
     habitsSaga(),
-    watchSaveProgress()
+    watchSaveProgress(),
+    modalsSaga()
+
   ])
 }
