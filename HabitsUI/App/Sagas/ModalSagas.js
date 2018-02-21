@@ -5,6 +5,9 @@ import {put,takeEvery} from 'redux-saga/effects'
 
 export function* modalToggle(action) {
     const {currentState} = action
+    console.log('====================================');
+    console.log(currentState);
+    console.log('====================================');
     try {
         const data = {
             isModalVisible:!currentState

@@ -6,6 +6,7 @@ import AddModalContent from '../Components/AddModelContent'
 
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import {modalToggle} from '../Redux/ModalRedux'
+import {saveHabit} from '../Redux/HabitSaveRedux'
 
 // Styles
 import styles from './Styles/AddModalScreenStyle'
@@ -17,11 +18,16 @@ class AddModalScreen extends Component {
     super(props);
     // This binding is necessary to make `this` work in the callback
     this.modalToggleFromModal = this.modalToggleFromModal.bind(this);
+    this.saveHabit = this.saveHabit.bind(this);
 
   }
 
   modalToggleFromModal(currentState) {
     this.props.modalToggleFromModal(currentState)
+  }
+  
+  saveHabit(habit) {
+    this.props.saveHabit(habit)    
   }
 
   render() {
@@ -29,7 +35,7 @@ class AddModalScreen extends Component {
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView behavior='position'>
           {
-            this.props.modalData.isFetching ? null : <AddModalContent isModalVisible={this.props.modalData.isModalVisible} modalToggle={this.props.modalToggleFromModal} />
+            this.props.modalData.isFetching ? null : <AddModalContent isModalVisible={this.props.modalData.isModalVisible} modalToggle={this.props.modalToggleFromModal} saveHabit={this.props.saveHabit}/>
           }
         </KeyboardAvoidingView>
       </ScrollView>
@@ -45,7 +51,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    modalToggleFromModal : (currentState)=>dispatch(modalToggle(currentState))
+    modalToggleFromModal : (currentState)=>dispatch(modalToggle(currentState)),
+    saveHabit : (habit)=>dispatch(saveHabit(habit))
   }
 }
 

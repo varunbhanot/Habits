@@ -6,8 +6,7 @@ export default StyleSheet.create({
   },
   text:{
     color: '#fff',
-    marginTop:5,        
-    fontSize:15,
-    textDecorationLine:'underline'
+    marginTop:8,        
+    fontSize:15
   }
 })

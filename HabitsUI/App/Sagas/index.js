@@ -15,6 +15,7 @@ import { getUserAvatar } from './GithubSagas'
 import habitsSaga, { habitsSagas } from './HabitsSagas'
 import  watchSaveProgress  from './HabitTrackerSaga'
 import modalsSaga from "./ModalSagas";
+import saveHabitSaga from './SaveHabitSagas'
 
 /* ------------- API ------------- */
 
@@ -33,7 +34,7 @@ export default function * root () {
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
     habitsSaga(),
     watchSaveProgress(),
-    modalsSaga()
-
+    modalsSaga(),
+    saveHabitSaga()
   ])
 }

@@ -1,4 +1,4 @@
-import {TOGGLING_MODAL,TOGGLE_MODAL_SUCCESS,TOGGLE_MODAL_FAILURE} from '../Lib/constants'
+import {TOGGLING_MODAL,TOGGLE_MODAL_SUCCESS,TOGGLE_MODAL_FAILURE,SAVING_HABIT} from '../Lib/constants'
 
 const initialState = {
     isModalVisible: false,
@@ -28,10 +28,16 @@ const initialState = {
         return state
     }
   }
+  
 
   export function modalToggle(currentState) { 
+      console.log('====================================');
+      console.log(currentState);
+      console.log('====================================');
       return{
           type:TOGGLING_MODAL,
           currentState:currentState
       }
+
+          
   }
