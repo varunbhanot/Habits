@@ -7,6 +7,7 @@ export default StyleSheet.create({
   text:{
     color: '#fff',    
     fontSize:25 ,
-    fontFamily:'Lato-Regular'
+    fontFamily:'Lato-Regular',
+    marginLeft:15
   } 
 })
