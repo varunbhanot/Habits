@@ -1,0 +1,22 @@
+server:
+  port: 7000
+  context-path: /habit
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: 
+  h2:
+    console:
+      enabled: true
+      path: /console
+    
+flyway:
+  enabled: true
+  locations:
+  - classpath:db/h2
+  schemas:
+  - habits

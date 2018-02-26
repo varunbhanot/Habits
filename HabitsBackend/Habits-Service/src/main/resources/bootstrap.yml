@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: habits-service
+  cloud:
+    config:
+      uri: http://config:8888
+      fail-fast: true
+      
+---      
+spring:
+  profiles: dev  
+  application:
+    name: habits-service
+  cloud:
+    config:
+      enabled: false
+  
