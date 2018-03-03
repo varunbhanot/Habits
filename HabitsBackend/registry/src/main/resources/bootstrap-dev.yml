@@ -1,14 +1,15 @@
 spring:
   application:
     name: registry
-    
   cloud:
     config:
-      uri: http://localhost:8888
-      fail-fast: true
+      enabled: false
 eureka:
   instance:
     prefer-ip-address: true
   client:
     registerWithEureka: false
-    fetchRegistry: false   
+    fetchRegistry: false
+    
+server:
+  port: 8761    

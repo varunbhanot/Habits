@@ -13,6 +13,8 @@ spring:
     console:
       enabled: true
       path: /console
+  jackson:
+    date-format: yyyy-MM-dd
     
 flyway:
   enabled: true
@@ -20,3 +22,5 @@ flyway:
   - classpath:db/h2
   schemas:
   - habits
+
+  
