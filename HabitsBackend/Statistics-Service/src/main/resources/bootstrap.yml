@@ -1,11 +1,11 @@
 spring:
   application:
-    name: habit-service
+    name: statistics-service
   cloud:
     config:
       uri: http://config-service:8888
-      fail-fast: true    
-
+      fail-fast: true
+      
 eureka:
   instance:
     hostname: registry-service
@@ -14,13 +14,20 @@ eureka:
     enabled: true
     service-url:
       defaultZone: http://registry-service:8761/eureka
-            
-            
+      
+      
 ---      
 spring:
   profiles: dev  
   application:
-    name: habit-service
+    name: statistics-service
   cloud:
     config:
       enabled: false
+  
+server:
+  port: 8000
+  context-path: /stats
+
+  
+ 

@@ -6,10 +6,12 @@ spring:
       enabled: false
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true    
   client:
     registerWithEureka: false
     fetchRegistry: false
+    service-url:
+      defaultZone: http://registry-service:8761/eureka
     
 server:
   port: 8761    

@@ -1,0 +1,100 @@
+version: '2.1'
+services:
+
+  config-service:
+    image: config-service
+    restart: always
+    ports:
+      - 8888:8888
+    environment:      
+      HABITS_DB_PASSWORD: $HABITS_DB_PASSWORD      
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+        
+  proxy-service:
+    image: proxy-service
+    restart: always    
+    ports:
+      - 4000:4000
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  
+  
+  registry-service:
+    image: registry-service
+    restart: always    
+    ports:
+      - 8761:8761
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  
+
+  habits-db:
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    depends_on:
+      config-service:
+        condition: service_healthy
+    environment:
+      MYSQL_DATABASE: habits
+      MYSQL_USER: app_user
+      MYSQL_ROOT_PASSWORD: password@root
+      MYSQL_PASSWORD: $HABITS_DB_PASSWORD      
+  
+  habit-service:
+    environment:      
+      HABITS_DB_PASSWORD: $HABITS_DB_PASSWORD      
+    image: habit-service
+    ports:
+      - 6000:6000
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+        
+  statistics-db:
+    image: mysql
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_DATABASE: stats
+      MYSQL_USER: app_user
+      MYSQL_ROOT_PASSWORD: password@root
+      MYSQL_PASSWORD: $STATS_DB_PASSWORD
+  
+  statistics-service:
+    environment:      
+      STATS_DB_PASSWORD: $STATS_DB_PASSWORD      
+    image: statistics-service
+    ports:
+      - 7000:7000
+    restart: always
+    depends_on:
+      config-service:
+        condition: service_healthy
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"             

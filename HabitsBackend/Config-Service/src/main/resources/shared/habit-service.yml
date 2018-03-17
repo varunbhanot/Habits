@@ -1,17 +1,18 @@
 server:
   port: 6000
   context-path: /habit
-spring:
   jpa:
     hibernate:
       ddl-auto: none
   datasource:
     url: jdbc:mysql://habits-db:3306/habits
-    username: root
-    password: example
+    username: app_user
+    password: ${HABITS_DB_PASSWORD}
+  jackson:
+    date-format: yyyy-MM-dd
 flyway:
   enabled: true
   locations:
   - classpath:db/mysql
   schemas:
-  - habits
+  - habits    
