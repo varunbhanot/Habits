@@ -14,4 +14,37 @@ eureka:
     enabled: true
     service-url:
       defaultZone: http://registry-service:8761/eureka
-      
+---
+spring:
+  profiles: dev  
+  application:
+    name: proxy-service
+  cloud:
+    config:
+      enabled: false
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka            
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+  routes:    
+    habit-service:
+        path: /habit/**
+        url: http://localhost:6000/
+        
+    statistics-service:
+        path: /stats/**
+        url: http://localhost:7000/
+        
+server:
+  port: 4000      

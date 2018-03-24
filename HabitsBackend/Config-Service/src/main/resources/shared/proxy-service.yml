@@ -1,19 +1,19 @@
 zuul:
   ignoredServices: '*'
   host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
+    connect-timeout-millis: 50000
+    socket-timeout-millis: 50000
   routes:    
     habit-service:
         path: /habit/**
         serviceId: habit-service
-        stripPrefix: false
+        stripPrefix: true
         sensitiveHeaders:
 
     statistics-service:
-        path: /statistics/**
+        path: /stats/**
         serviceId: statistics-service
-        stripPrefix: false
+        stripPrefix: true
         sensitiveHeaders:
     
 server:

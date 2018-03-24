@@ -14,9 +14,7 @@ eureka:
     enabled: true
     service-url:
       defaultZone: http://registry-service:8761/eureka
-      
-      
----      
+---
 spring:
   profiles: dev  
   application:
@@ -24,10 +22,24 @@ spring:
   cloud:
     config:
       enabled: false
-  
+  jackson:
+    date-format: yyyy-MM-dd
+      
 server:
-  port: 8000
-  context-path: /stats
-
-  
+  port: 7000  
  
+flyway:
+  enabled: true
+  locations:
+  - classpath:db/mysql
+  schemas:
+  - habits        
+  
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka            

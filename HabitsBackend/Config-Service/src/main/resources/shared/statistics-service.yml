@@ -1,9 +1,9 @@
 server:
-  port: 7000
-  context-path: /stats
+  port: 7000  
   jpa:
     hibernate:
       ddl-auto: none
+    show-sql: true
   datasource:
     url: jdbc:mysql://statistics-db:3306/stats
     username: app_user

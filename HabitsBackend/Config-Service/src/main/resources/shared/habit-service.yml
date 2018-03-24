@@ -1,6 +1,5 @@
 server:
-  port: 6000
-  context-path: /habit
+  port: 6000  
   jpa:
     hibernate:
       ddl-auto: none
