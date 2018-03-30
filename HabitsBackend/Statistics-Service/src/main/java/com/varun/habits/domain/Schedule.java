@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,6 +25,7 @@ public class Schedule {
 	private Long id;
 	@Column(name = "schedule_date")
 	@JsonFormat(pattern="yyyy-MM-dd")
+	@NotNull
 	private Date scheduleDate;		
 	@Column(name = "habit_id")
 	private Long habitId;

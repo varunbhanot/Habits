@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.varun.habits.domain.Habit;
+import com.varun.habits.domain.Habits;
 import com.varun.habits.service.HabitsService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class HabitsController {
 	 * @return
 	 */
 	@RequestMapping(path = "/api/{deviceId}", method = RequestMethod.GET)
-	public List<Habit> getHabitsByDeviceId(@PathVariable String deviceId) {
+	public Habits getHabitsByDeviceId(@PathVariable String deviceId) {
 		log.debug("Inside getHabitsByDeviceId for device : {}", deviceId);
 		return service.getHabitsByDeviceId(deviceId);
 	}

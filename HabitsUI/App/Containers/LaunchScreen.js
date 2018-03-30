@@ -5,6 +5,7 @@ import Images from '../Themes/Images'
 import { FloatingAction } from 'react-native-floating-action';
 
 
+
 //Custom components 
 import HabitsHeader from '../Components/HabitsHeader.js'
 import TitleNav from '../Components/TitleNav.js'
@@ -34,7 +35,7 @@ class LaunchScreen extends Component {
   }
 
   
-  componentWillMount() {
+  componentWillMount() {    
     this.props.fetchData()
   }
 
@@ -65,8 +66,8 @@ class LaunchScreen extends Component {
            />          
           <DateHeader />
           {
-            this.props.appData.data.length ? (                                                          
-              this.props.appData.data.map((person, index) => {
+            this.props.appData.data.habitsList ? (                                                          
+              this.props.appData.data.habitsList.map((person, index) => {
                 return <HabitCard person={person} index={index} key={index} saveProgress={this.saveProgress} navigate={this.props.navigation}/>
               }
             )              
@@ -93,7 +94,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchData: () => dispatch(fetchData()),
+    fetchData: (uniqueId) => dispatch(fetchData(uniqueId)),
     saveProgress : (value) => dispatch(saveProgress(value)),
     modalToggle: (currentState)=>dispatch(modalToggle(currentState))
   }

@@ -1,8 +1,7 @@
 package com.varun.habits.service;
 
-import java.util.List;
-
 import com.varun.habits.domain.Habit;
+import com.varun.habits.domain.Habits;
 
 public interface HabitsService {
 	
@@ -20,7 +19,7 @@ public interface HabitsService {
 	 * @param deviceId
 	 * @return List of all habits
 	 */
-	List<Habit> getHabitsByDeviceId(String deviceId);
+	Habits getHabitsByDeviceId(String deviceId);
 	
 	/**
 	 * @param deviceId

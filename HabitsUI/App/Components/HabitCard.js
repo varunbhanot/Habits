@@ -35,7 +35,7 @@ export default class HabitCard extends Component {
   }
 
   renderCard(person, index, saveProgress, navigate) {
-    const { name, age, last_five } = person;
+    const { name, age, lastFive } = person;
     return (
       <TouchableWithoutFeedback key={index} onPress={() => (navigate.navigate('StatisticsScreen', { name: { name } }))}>
         <View key={index} style={styles.cardContainer}>
@@ -45,7 +45,7 @@ export default class HabitCard extends Component {
             </Text>
           </View>
           {
-            range = last_five.map((value, index) => (
+            range = lastFive.map((value, index) => (
               this.renderIcon(value, index, saveProgress)
             ))
           }

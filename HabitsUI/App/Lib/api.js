@@ -1,120 +1,35 @@
-const people = [
-  {
-    "name": "Running",
-    "id": "1",
-    "question": "",
-    "last_five": [
-      1,
-      0,
-      1,
-      1,
-      1
-    ]
-  },
-    { name: 'No Smoking', id:'2',question:'',"last_five": [
-      1,
-      1,
-      1,
-      1,
-      0
-    ] },
-    { name: 'Code', id:'3',question:'',"last_five": [
-      1,
-      0,
-      1,
-      1,
-      0
-    ] },
-  ]
-  
-  export default () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        return resolve(people)
-      }, 1000)
-    })
-  }
 
+const baseURI = "http://192.168.99.100:4000/"
 
-  const people_2 = [
-    {
-      "name": "Running",
-      "id": "1",
-      "question": "",
-      "last_five": [
-        0,
-        0,
-        1,
-        1,
-        1
-      ]
+const habitsSubdomain = "habit/api/"
+
+export const getHabits = (uniqueId) => {
+  const url = baseURI + habitsSubdomain + uniqueId
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-      { name: 'No Smoking', id:'2',question:'',"last_five": [
-        1,
-        1,
-        1,
-        1,
-        0
-      ] },
-      { name: 'Code', id:'3',question:'',"last_five": [
-        1,
-        0,
-        1,
-        1,
-        0
-      ] },
-    ]
-  
+  }).then(response => response.json())
+    .then(responseJson => responseJson)
+    .catch(error => ({ error }))
+}
 
-    export const getPeople2 =  () => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          return resolve(people_2)
-        }, 1000)
-      })
-    }
 
-    const people_3 = [
-      {
-        "name": "Running",
-        "id": "1",
-        "question": "",
-        "last_five": [
-          0,
-          0,
-          1,
-          1,
-          1
-        ]
-      },
-        { name: 'No Smoking', id:'2',question:'',"last_five": [
-          1,
-          1,
-          1,
-          1,
-          0
-        ] },
-        { name: 'New Habit', id:'4',question:'',"last_five": [
-          0,
-          0,
-          0,
-          0,
-          0
-        ] },
-        { name: 'Code', id:'3',question:'',"last_five": [
-          1,
-          0,
-          1,
-          1,
-          0
-        ] },
-      ]
-    
-  
-      export const getPeople3 =  () => {
-        return new Promise((resolve, reject) => {
-          setTimeout(() => {
-            return resolve(people_3)
-          }, 1000)
-        })
-      }    
+
+export const saveHabitApi = (habit, uniqueId) => {
+  const url = baseURI + habitsSubdomain
+  habit["deviceId"] = uniqueId
+
+  return fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(habit),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+    .then(responseJson => responseJson)
+    .catch(error => ({ error }))
+}

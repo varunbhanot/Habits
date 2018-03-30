@@ -4,6 +4,7 @@ import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
 import styles from './Styles/AddModelContentStyle'
 import Modal from 'react-native-modal'
 import { FormInput, Header, FormValidationMessage } from 'react-native-elements'
+import  DeviceInfo  from 'react-native-device-info'
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -11,7 +12,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export default class AddModelContent extends Component {
   constructor(props) {
     super(props);
-    this.state = { Name: '', Question:'' };
+    this.state = { name: '', question:'' };
     this.setValue = this.setValue.bind(this);    
   }
 
@@ -36,7 +37,7 @@ export default class AddModelContent extends Component {
       <View style={styles.inputContainer}>
         <FormInput containerStyle={{ borderRadius: 40, borderWidth: 1, borderColor: "#26A69A", height: 50, width: SCREEN_WIDTH - 90, marginVertical: 10 }}
           placeholder="Name" placeholderTextColor="#26A69A" inputStyle={{ marginLeft: 15, color: "white" }} autoCapitalize="none" autoCorrect={false}
-          keyboardAppearance="light" returnKeyType="next" blurOnSubmit={false} ref={input => (this.nameInput = input)} onChangeText={text=>this.setValue(text,'Name')} />
+          keyboardAppearance="light" returnKeyType="next" blurOnSubmit={false} ref={input => (this.nameInput = input)} onChangeText={text=>this.setValue(text,'name')} />
         {/*<FormValidationMessage>{'This field is required'}</FormValidationMessage>*/}
 
         <FormInput containerStyle={{ borderRadius: 40, borderWidth: 1, borderColor: "#26A69A", height: 50, width: SCREEN_WIDTH - 90, marginVertical: 10 }}
@@ -45,7 +46,7 @@ export default class AddModelContent extends Component {
       </View>
       <View style={styles.buttonContainer}>
         {this._renderButton('Discard', () => modalToggle(true))}
-        {this._renderButton('Save', () => saveHabit(this.state))}
+        {this._renderButton('Save', () => saveHabit(this.state,DeviceInfo.getUniqueID()))}
       </View>
     </View>
   );

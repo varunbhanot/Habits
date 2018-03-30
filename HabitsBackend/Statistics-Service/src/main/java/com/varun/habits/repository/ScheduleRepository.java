@@ -23,5 +23,8 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long>{
 	 * @return
 	 */
 	List<Schedule> findByHabitId(Long habitId);
+	
+	
+	Schedule findByHabitIdAndScheduleDate(Date scheduleDate,long habitId);
 
 }

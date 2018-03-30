@@ -1,4 +1,5 @@
 import { FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAILURE,SAVING_PROGRESS,SAVING_DATA_SUCCESS,SAVING_DATA_FAILURE} from '../Lib/constants'
+import  DeviceInfo  from 'react-native-device-info';
 const initialState = {
   data: [],
   dataFetched: false,
@@ -16,12 +17,13 @@ export default function dataReducer (state = initialState, action) {
       }
     case FETCHING_DATA_SUCCESS:
       return {
+        
         ...state,
         isFetching: false,
         data: action.data
       }
     case FETCHING_DATA_FAILURE:
-      return {
+      return {        
         ...state,
         isFetching: false,
         error: true
@@ -52,8 +54,10 @@ export default function dataReducer (state = initialState, action) {
 */
 
 export function fetchData() {
+  const uniqueId = DeviceInfo.getUniqueID();
   return {
-    type: FETCHING_DATA
+    type: FETCHING_DATA,
+    uniqueId : uniqueId
   }
 }
 

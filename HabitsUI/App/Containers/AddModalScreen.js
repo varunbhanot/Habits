@@ -22,12 +22,12 @@ class AddModalScreen extends Component {
 
   }
 
-  modalToggleFromModal(currentState) {
+  modalToggleFromModal(currentState) {    
     this.props.modalToggleFromModal(currentState)
   }
   
-  saveHabit(habit) {
-    this.props.saveHabit(habit)    
+  saveHabit(habit) {    
+    this.props.saveHabit(habit,uniqueId)    
   }
 
   render() {
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     modalToggleFromModal : (currentState)=>dispatch(modalToggle(currentState)),
-    saveHabit : (habit)=>dispatch(saveHabit(habit))
+    saveHabit : (habit,uniqueId)=>dispatch(saveHabit(habit,uniqueId))
   }
 }
 

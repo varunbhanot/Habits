@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 
 import com.varun.habits.clients.StatisticsServiceClient;
 import com.varun.habits.domain.Habit;
+import com.varun.habits.domain.Habits;
 import com.varun.habits.repository.HabitRepository;
 
 /**
@@ -44,10 +45,13 @@ public class HabitsServiceImpl implements HabitsService {
 	 * com.varun.habits.service.HabitsService#getHabitsByDeviceId(java.lang.String)
 	 */
 	@Override
-	public List<Habit> getHabitsByDeviceId(String deviceId) {
+	public Habits getHabitsByDeviceId(String deviceId) {
 		List<Habit> habits = habitRepository.findByDeviceId(deviceId);
-		habits.forEach(x -> x.setLastFive(client.getSchedule(this.getDate(4), this.getDate(0), x.getId())));
-		return habits;
+		habits
+		.forEach(x -> 
+				 x.setLastFive(
+						 client.getSchedule(this.getDate(4), this.getDate(0), x.getId())));
+		return new Habits(habits);
 	}
 
 	public Date getDate(int dateRange) {
