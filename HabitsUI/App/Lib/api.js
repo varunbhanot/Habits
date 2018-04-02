@@ -1,7 +1,7 @@
 import { ADD } from "../Lib/constants";
 
 
-const baseURI = "http://192.168.99.100:4000/"
+const baseURI = "{backendURL}"
 
 const habitsSubdomain = "habit/api/"
 const statsSubdomain = "stats/api/"
