@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableWithoutFeedback, Alert } from 'react-native'
+import moment from 'moment'
+import { DELETE, ADD } from '../Lib/constants'
+
 
 //Styles
 import styles from './Styles/HabitCardStyle'
@@ -14,18 +17,29 @@ export default class HabitCard extends Component {
     Alert.alert('Press and hold to check and uncheck')
   }
 
+  generateDates() {
+    r = _.range(5, 0, -1)
+    dates = _.map(r, function (value) {
+      return moment()
+        .subtract(value, 'days')
+        .format("YYYY-MM-DD")
+    })
+    return dates
+  }
 
-  renderIcon(value, index, saveProgress) {
-    if (value === 1) {
+
+
+  renderIcon(value, index, saveProgress,lastFive,id,deviceId) {    
+    if (lastFive.includes(value)) {
       return (
-        <TouchableWithoutFeedback onLongPress={() => saveProgress(value)} key={index} onPress={this._onPressIcon}>
+        <TouchableWithoutFeedback onLongPress={() => saveProgress(value,id,deviceId,DELETE)} key={index} onPress={this._onPressIcon}>
           <View style={styles.iconContainer} key={index}>
             <Icon name='check' color='#26A69A' size={20} key={index} />
           </View>
         </TouchableWithoutFeedback>)
     } else {
       return (
-        <TouchableWithoutFeedback onLongPress={() => saveProgress(value)} key={index} onPress={this._onPressIcon}>
+        <TouchableWithoutFeedback onLongPress={() => saveProgress(value,id,deviceId,ADD)} key={index} onPress={this._onPressIcon}>
           <View style={styles.iconContainer} key={index}>
             <Icon name='close' color='gray' size={20} key={index} />
           </View>
@@ -34,10 +48,10 @@ export default class HabitCard extends Component {
     }
   }
 
-  renderCard(person, index, saveProgress, navigate) {
-    const { name, age, lastFive } = person;
+  renderCard(habit, index, saveProgress, navigate) {    
+    const { name, question, lastFive,id,deviceId } = habit;
     return (
-      <TouchableWithoutFeedback key={index} onPress={() => (navigate.navigate('StatisticsScreen', { name: { name } }))}>
+      <TouchableWithoutFeedback key={index} onPress={() => (navigate.navigate('StatisticsScreen', { name,id }))}>
         <View key={index} style={styles.cardContainer}>
           <View style={styles.nameContainer}>
             <Text style={styles.name}>
@@ -45,9 +59,7 @@ export default class HabitCard extends Component {
             </Text>
           </View>
           {
-            range = lastFive.map((value, index) => (
-              this.renderIcon(value, index, saveProgress)
-            ))
+             this.generateDates().map((value, index) => (this.renderIcon(value, index, saveProgress,lastFive,id,deviceId)))
           }
         </View>
       </TouchableWithoutFeedback>
@@ -57,7 +69,7 @@ export default class HabitCard extends Component {
   render() {
     return (
       <View key={this.props.index}>
-        {this.renderCard(this.props.person, this.props.index, this.props.saveProgress, this.props.navigate)}
+        {this.renderCard(this.props.habit, this.props.index, this.props.saveProgress, this.props.navigate)}
       </View>
     )
   }

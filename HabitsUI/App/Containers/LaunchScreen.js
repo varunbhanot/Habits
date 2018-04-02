@@ -18,8 +18,8 @@ import AddModalScreen from '../Containers/AddModalScreen'
 import styles from './Styles/LaunchScreenStyles'
 // Connect
 import { connect } from 'react-redux'
-import { fetchData,saveProgress } from '../Redux/HabitsRedux'
-import {modalToggle} from '../Redux/ModalRedux'
+import { fetchData, saveProgress } from '../Redux/HabitsRedux'
+import { modalToggle } from '../Redux/ModalRedux'
 /*TODO : move styles to style.js
 move out render card to its own component
 write logic for showing ActivityLoaderComponent
@@ -27,60 +27,60 @@ write logic for showing ActivityLoaderComponent
 class LaunchScreen extends Component {
 
   constructor(props) {
-    super(props);    
+    super(props);
     // This binding is necessary to make `this` work in the callback
-    this.saveProgress = this.saveProgress.bind(this);    
-    this.modalToggle = this.modalToggle.bind(this);    
+    this.saveProgress = this.saveProgress.bind(this);
+    this.modalToggle = this.modalToggle.bind(this);
 
   }
 
-  
-  componentWillMount() {    
+
+  componentWillMount() {
     this.props.fetchData()
   }
 
 
-  saveProgress(value){
-    this.props.saveProgress(value)
+  saveProgress(value, id, deviceId ,operation) {
+    this.props.saveProgress(value, id, deviceId ,operation)
   }
 
-  modalToggle(currentState){    
-      this.props.modalToggle(currentState)    
+  modalToggle(currentState) {
+    this.props.modalToggle(currentState)
   }
 
   render() {
     const actions = [{
-      text: 'Add',      
+      text: 'Add',
       name: 'Add',
       icon: require('../../images/add.png'),
-      color:'#26A69A',
+      color: '#26A69A',
       position: 1
     }];
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
-          <HabitsHeader centerComponent={<TitleNav title={'Habits'}/>} 
-          rightComponent={<TitleNav title={''}/>} 
-          leftComponent={<TitleNav title={''}/>}
-           />          
+          <HabitsHeader centerComponent={<TitleNav title={'Habits'} />}
+            rightComponent={<TitleNav title={''} />}
+            leftComponent={<TitleNav title={''} />}
+          />
           <DateHeader />
           {
-            this.props.appData.data.habitsList ? (                                                          
-              this.props.appData.data.habitsList.map((person, index) => {
-                return <HabitCard person={person} index={index} key={index} saveProgress={this.saveProgress} navigate={this.props.navigation}/>
+            this.props.appData.data.habitsList ? (
+              this.props.appData.data.habitsList.map((habit, index) => {
+                return <HabitCard habit={habit} index={index} key={index} saveProgress={this.saveProgress} navigate={this.props.navigation} />
               }
-            )              
-            )  : <ActivityIndicator size="large" color="#0000ff" />
+              )
+            ) : <ActivityIndicator size="large" color="#0000ff" />
           }
-          <AddModalScreen/>          
+          <AddModalScreen />
         </ScrollView>
-                  
-          <FloatingAction
-            buttonColor={'#26A69A'}
-            actions={actions}
-            overrideWithAction
-            onPressItem={()=>this.modalToggle(false)}/>        
+
+        <FloatingAction
+          buttonColor={'#26A69A'}
+          actions={actions}
+          overrideWithAction
+          onPressItem={() => this.modalToggle(false)} />
       </View>
     )
   }
@@ -95,8 +95,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchData: (uniqueId) => dispatch(fetchData(uniqueId)),
-    saveProgress : (value) => dispatch(saveProgress(value)),
-    modalToggle: (currentState)=>dispatch(modalToggle(currentState))
+    saveProgress: (value, id, deviceId ,operation) => dispatch(saveProgress(value, id,deviceId, operation)),
+    modalToggle: (currentState) => dispatch(modalToggle(currentState))
   }
 }
 

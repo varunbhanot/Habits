@@ -32,6 +32,6 @@ public class Habit {
 	private String question;
 
 	@Transient
-	private List<HabitSchedule> lastFive;
+	private List<String> lastFive;
 
 }

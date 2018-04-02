@@ -1,9 +1,12 @@
 package com.varun.habits.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,11 +49,17 @@ public class HabitsServiceImpl implements HabitsService {
 	 */
 	@Override
 	public Habits getHabitsByDeviceId(String deviceId) {
+		DateFormat format= new SimpleDateFormat("yyyy-MM-dd");
 		List<Habit> habits = habitRepository.findByDeviceId(deviceId);
-		habits
+		habits		
 		.forEach(x -> 
-				 x.setLastFive(
-						 client.getSchedule(this.getDate(4), this.getDate(0), x.getId())));
+		{
+			x.setLastFive(
+			client.getSchedule(this.getDate(4), this.getDate(0), x.getId())
+			.stream()
+			.map(s->format.format(s.getScheduleDate()))
+			.collect(Collectors.toList()));	
+		});
 		return new Habits(habits);
 	}
 

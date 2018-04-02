@@ -3,19 +3,16 @@ import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
 
-/* ------------- Types ------------- */
 
-import { StartupTypes } from '../Redux/StartupRedux'
-import { GithubTypes } from '../Redux/GithubRedux'
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './StartupSagas'
-import { getUserAvatar } from './GithubSagas'
+
 import habitsSaga, { habitsSagas } from './HabitsSagas'
 import  watchSaveProgress  from './HabitTrackerSaga'
 import modalsSaga from "./ModalSagas";
 import saveHabitSaga from './SaveHabitSagas'
+import statsSaga from './StatisticsSaga'
 
 /* ------------- API ------------- */
 
@@ -30,6 +27,7 @@ export default function * root () {
     habitsSaga(),
     watchSaveProgress(),
     modalsSaga(),
-    saveHabitSaga()
+    saveHabitSaga(),
+    statsSaga()
   ])
 }

@@ -61,8 +61,12 @@ export function fetchData() {
   }
 }
 
-export function saveProgress(value){
+export function saveProgress(value,id,deviceId,operation){
   return {
-    type: SAVING_PROGRESS
+    type: SAVING_PROGRESS,
+    operation:operation,
+    deviceId:deviceId,
+    id:id,
+    value:value,
   }
 }

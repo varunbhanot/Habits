@@ -2,6 +2,7 @@ package com.varun.habits.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -16,6 +17,7 @@ import lombok.Data;
 @Data
 public class HabitSchedule {
 
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date scheduleDate;
 	@JsonIgnore
 	private Long id;

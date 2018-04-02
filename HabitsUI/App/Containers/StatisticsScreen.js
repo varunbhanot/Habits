@@ -9,8 +9,8 @@ import StatisticsCalendar from '../Components/StatisticsCalendar'
 
 
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
+import { fetchStatistics } from '../Redux/StatisticsRedux'
 
 // Styles
 import styles from './Styles/StatisticsScreenStyle'
@@ -25,7 +25,7 @@ class StatisticsScreen extends Component {
   }
 
   componentWillMount() {
-    //call Api for specific habit
+    this.props.fetchStatistics(this.props.navigation.state.params.id)
   }
 
   onNavPress(navigation) {
@@ -43,10 +43,10 @@ class StatisticsScreen extends Component {
           leftComponent={<TitleNav title={''} />}
         />
         <ScrollView style={styles.container}>
-        <StatisticsCard text={'Total Times Done'} value={'40'} iconName={'check'} iconColor={'green'}/>
-        <StatisticsCard text={'Best Streak'} value={'10'} iconName={'trophy'} iconColor={'orange'}/>
-        <StatisticsCard text={'Current Streak'} value={'5'} iconName={'star'} iconColor={'yellow'}/>
-        <StatisticsCalendar streaks={{'2018-02-17': { selected: true, startingDay: true, color: 'green' },'2018-02-18': { selected: true, endingDay: true, color: 'green' }}}/>
+          <StatisticsCard text={'Total Times Done'} value={this.props.statsData.totalTimesDone} iconName={'check'} iconColor={'green'} />
+          <StatisticsCard text={'Best Streak'} value={this.props.statsData.bestStreak} iconName={'trophy'} iconColor={'orange'} />
+          <StatisticsCard text={'Current Streak'} value={this.props.statsData.currentStreak} iconName={'star'} iconColor={'yellow'} />
+          <StatisticsCalendar streaks={{ '2018-02-17': { selected: true, startingDay: true, color: 'green' }, '2018-02-18': { selected: true, endingDay: true, color: 'green' } }} />
         </ScrollView>
       </View>
     )
@@ -55,11 +55,13 @@ class StatisticsScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    statsData: state.stats.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {    
+  return {
+    fetchStatistics: (habitId) => dispatch(fetchStatistics(habitId))
   }
 }
 
