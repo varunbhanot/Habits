@@ -8,22 +8,22 @@ Habits Backend is decomposed into two core microservices. All of them are indepe
 **Habits Service**
 Contains general user input logic and validation: creation of a habit, modification for a particular day.
 
-|Method| Path |Description|Available from UI|
-|--|--|--|--|--|
-|GET|/api/{deviceId}|get Habits By DeviceId|Y|
-|GET|/api/{deviceId}/{name}|get a single habit by name|Y|
-|POST|/api|create a new habit|Y|
-
+| Method | Path                   | Description                | Available from UI |
+|--------|------------------------|----------------------------|-------------------|
+| GET    | /api/{deviceId}        | get Habits By DeviceId     | Y                 |
+| GET    | /api/{deviceId}/{name} | get a single habit by name | Y                 |
+| POST   | /api                   | create a new Habit         | Y                 |
 
 #### Statistics service
 
 Performs calculations on major statistics parameters and captures datapoints for each device. Provides stats like total times done,current streak,best streak as well as time series data for habits
-|Method| Path |Description|Available from UI|
-|--|--|--|--|--|
-|GET|/api/{habitId}/stats|get all stats for a habit id|Y|
-|POST|/api/{habitId}/schedule|create a new schedule for a habit|Y|
-|DELETE|/api/{habitId}/schedule|delete an existing schedule for a habit|Y|
-|GET|/api/{habitId}/schedule|get a schedule from a from date and to dat|N|
+
+| Method | Path                    | Description                                 | Available from UI |
+|--------|-------------------------|---------------------------------------------|-------------------|
+| GET    | /api/{habitId}/stats    | get all stats for a habit id                | Y                 |
+| POST   | /api/{habitId}/schedule | create a new schedule for a habit           | Y                 |
+| DELETE | /api/{habitId}/schedule | delete an existing schedule for a habit     | Y                 |
+| GET    | /api/{habitId}/schedule | get a schedule from a from date and to date | N                 |
 
 
 # Infrastructure services
