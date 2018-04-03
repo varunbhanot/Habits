@@ -3,6 +3,11 @@
 
 * Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
 
+![enter image description here](https://lh3.googleusercontent.com/qGjncNnEQ-gbW8freprq1WYzT63AJh24HGRVoO-kAoR7lL4alMR7zSjdy1dbyACdrLQtvm2geajc "Homesceen")
+![
+](https://lh3.googleusercontent.com/fgJjMIuyMi0UUsqVci5eBmNiiOv7lwLboaHxUpvpNlVRvRJ-y3CAWibAazGyech-t46LIcRht11K "New Habit Screen")
+
+![enter image description here](https://lh3.googleusercontent.com/BffY4DQMOk3E8MwYc9dYRm4XIWMtGqV6NI7K35QTWUtTXJcyn-9sM3mVqtMdHN1LKcdYGQL8cvqp "Statistics Screen")
 ## :arrow_up: How to Setup
 
 **Step 1:** git clone this repo:
