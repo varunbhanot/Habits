@@ -2,6 +2,8 @@
 
 This is a proof-of-concept application, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud and Docker. With a pretty neat user interfaced developed with React Native, by the way.
 
+![enter image description here](https://lh3.googleusercontent.com/dcboR3wdriFe6DjnnaMNxeDnH0hOEdqPi3nmcaZuqCszn4T3WH7PxcNXo2_17NXaIOhMJBxLveFh)
+
 # Functional Services
 Habits Backend is decomposed into two core microservices. All of them are independently deployable applications, organized around certain business domains.
 
@@ -29,7 +31,7 @@ Performs calculations on major statistics parameters and captures datapoints for
 # Infrastructure services
 There's a bunch of common patterns in distributed systems, which could help us to make described core services work. [Spring cloud](http://projects.spring.io/spring-cloud/) provides powerful tools that enhance Spring Boot applications behaviour to implement those patterns.
 
-![enter image description here](https://lh3.googleusercontent.com/dcboR3wdriFe6DjnnaMNxeDnH0hOEdqPi3nmcaZuqCszn4T3WH7PxcNXo2_17NXaIOhMJBxLveFh)
+
 
 ### Config service
 
